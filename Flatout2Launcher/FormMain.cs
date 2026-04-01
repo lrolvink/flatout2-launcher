@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using System.Diagnostics;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.IO;
 
 namespace Flatout2Launcher
 {
@@ -29,7 +29,7 @@ namespace Flatout2Launcher
 
         private void GetIPAddresses()
         {
-            int numberOfIPs=0;
+            int numberOfIPs = 0;
             // Get a list of all network interfaces (usually one per network card, dialup, and VPN connection) 
             NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
 
@@ -55,12 +55,14 @@ namespace Flatout2Launcher
                 }
             }
 
-            if (numberOfIPs > 0) {
+            if (numberOfIPs > 0)
+            {
                 comboBox1.SelectedIndex = 0;
             }
         }
 
-        private int LaunchGame(string args) {
+        private int LaunchGame(string args)
+        {
             int exitCode = -1;
 
             // Prepare the process to run
@@ -72,6 +74,11 @@ namespace Flatout2Launcher
             // Run the external process & wait for it to finish
             try
             {
+                if (!File.Exists(start.FileName))
+                {
+                    throw new FileNotFoundException($"{start.FileName} not found! Please place this program inside the game directory along side the game executable.");
+                }
+
                 using (Process proc = Process.Start(start))
                 {
                     proc.WaitForExit();
@@ -80,14 +87,16 @@ namespace Flatout2Launcher
                     exitCode = proc.ExitCode;
                 }
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 MessageBox.Show(e.Message);
             }
 
             return exitCode;
         }
 
-        private bool ValidateIP(string ip) {
+        private bool ValidateIP(string ip)
+        {
             int count = 0;
             string[] words = ip.Split('.');
 
@@ -104,13 +113,15 @@ namespace Flatout2Launcher
                         return false;
                     }
                 }
-                    catch (Exception e) {
-                        return false;
-                    }
+                catch (Exception e)
+                {
+                    return false;
+                }
 
             }
 
-            if (count != 4) {
+            if (count != 4)
+            {
                 return false;
             }
 
@@ -124,46 +135,63 @@ namespace Flatout2Launcher
 
         private void buttonRun_Click(object sender, EventArgs e)
         {
-             switch (mainTabControl.SelectedIndex) { 
+            switch (mainTabControl.SelectedIndex)
+            {
                 /* Client */
                 case 0:
-                    if (ValidateIP(textBoxClient_ServerIP.Text))
                     {
-                        LaunchGame("-join=" + textBoxClient_ServerIP.Text + " -lan");
-                    }
-                    else {
-                        MessageBox.Show("Invalid IP!");
+                        string ipv4AsString = string.Empty;
+                        try
+                        {
+                            ipv4AsString = Dns.GetHostAddresses(textBoxClient_HostAddress.Text)
+                                .FirstOrDefault(ip => ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                                .ToString();
+                        }
+                        catch { }
+
+                        if (ValidateIP(ipv4AsString))
+                        {
+                            LaunchGame("-join=" + ipv4AsString + " -lan");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Invalid host address!");
+                        }
                     }
                     break;
 
                 /* Server */
                 case 1:
-                    string ip = ipList[comboBox1.SelectedIndex];
-                    if (ValidateIP(ip))
                     {
-                        LaunchGame("-host -lan -private_addr=" + ip);
+                        string ipv4AsString = ipList[comboBox1.SelectedIndex];
+                        if (ValidateIP(ipv4AsString))
+                        {
+                            LaunchGame("-host -lan -private_addr=" + ipv4AsString);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Invalid IP!");
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Invalid IP!");
-                    }    
                     break;
 
                 /* Options */
                 case 2:
-                    LaunchGame("-setup");
+                    {
+                        LaunchGame("-setup");
+                    }
                     break;
 
                 /* Single Player */
                 case 3:
-                    LaunchGame("");
+                    {
+                        LaunchGame("");
+                    }
                     break;
 
                 default:
                     break;
             }
-            
         }
-
     }
 }

@@ -33,16 +33,16 @@
             this.buttonRun = new System.Windows.Forms.Button();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.tabClient = new System.Windows.Forms.TabPage();
-            this.textBoxClient_ServerIP = new System.Windows.Forms.TextBox();
+            this.textBoxClient_HostAddress = new System.Windows.Forms.TextBox();
             this.labelServerIP = new System.Windows.Forms.Label();
             this.tabServer = new System.Windows.Forms.TabPage();
-            this.labelMyIP = new System.Windows.Forms.Label();
-            this.tabPageOptions = new System.Windows.Forms.TabPage();
-            this.tabPageSinglePlayer = new System.Windows.Forms.TabPage();
-            this.pictureBoxFlatOutLogo = new System.Windows.Forms.PictureBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.labelMyAddress = new System.Windows.Forms.Label();
+            this.tabPageOptions = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
+            this.tabPageSinglePlayer = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
+            this.pictureBoxFlatOutLogo = new System.Windows.Forms.PictureBox();
             this.mainTabControl.SuspendLayout();
             this.tabClient.SuspendLayout();
             this.tabServer.SuspendLayout();
@@ -87,7 +87,7 @@
             // 
             // tabClient
             // 
-            this.tabClient.Controls.Add(this.textBoxClient_ServerIP);
+            this.tabClient.Controls.Add(this.textBoxClient_HostAddress);
             this.tabClient.Controls.Add(this.labelServerIP);
             this.tabClient.Location = new System.Drawing.Point(4, 22);
             this.tabClient.Name = "tabClient";
@@ -97,27 +97,27 @@
             this.tabClient.Text = "Join";
             this.tabClient.UseVisualStyleBackColor = true;
             // 
-            // textBoxClient_ServerIP
+            // textBoxClient_HostAddress
             // 
-            this.textBoxClient_ServerIP.Location = new System.Drawing.Point(121, 34);
-            this.textBoxClient_ServerIP.MaxLength = 15;
-            this.textBoxClient_ServerIP.Name = "textBoxClient_ServerIP";
-            this.textBoxClient_ServerIP.Size = new System.Drawing.Size(100, 20);
-            this.textBoxClient_ServerIP.TabIndex = 1;
+            this.textBoxClient_HostAddress.Location = new System.Drawing.Point(84, 32);
+            this.textBoxClient_HostAddress.MaxLength = 15;
+            this.textBoxClient_HostAddress.Name = "textBoxClient_HostAddress";
+            this.textBoxClient_HostAddress.Size = new System.Drawing.Size(194, 20);
+            this.textBoxClient_HostAddress.TabIndex = 1;
             // 
             // labelServerIP
             // 
             this.labelServerIP.AutoSize = true;
-            this.labelServerIP.Location = new System.Drawing.Point(61, 37);
+            this.labelServerIP.Location = new System.Drawing.Point(6, 35);
             this.labelServerIP.Name = "labelServerIP";
-            this.labelServerIP.Size = new System.Drawing.Size(54, 13);
+            this.labelServerIP.Size = new System.Drawing.Size(72, 13);
             this.labelServerIP.TabIndex = 0;
-            this.labelServerIP.Text = "Server IP:";
+            this.labelServerIP.Text = "Host address:";
             // 
             // tabServer
             // 
             this.tabServer.Controls.Add(this.comboBox1);
-            this.tabServer.Controls.Add(this.labelMyIP);
+            this.tabServer.Controls.Add(this.labelMyAddress);
             this.tabServer.Location = new System.Drawing.Point(4, 22);
             this.tabServer.Name = "tabServer";
             this.tabServer.Padding = new System.Windows.Forms.Padding(3);
@@ -126,14 +126,22 @@
             this.tabServer.Text = "Host";
             this.tabServer.UseVisualStyleBackColor = true;
             // 
-            // labelMyIP
+            // comboBox1
             // 
-            this.labelMyIP.AutoSize = true;
-            this.labelMyIP.Location = new System.Drawing.Point(6, 37);
-            this.labelMyIP.Name = "labelMyIP";
-            this.labelMyIP.Size = new System.Drawing.Size(37, 13);
-            this.labelMyIP.TabIndex = 1;
-            this.labelMyIP.Text = "My IP:";
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(76, 32);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(202, 21);
+            this.comboBox1.TabIndex = 2;
+            // 
+            // labelMyAddress
+            // 
+            this.labelMyAddress.AutoSize = true;
+            this.labelMyAddress.Location = new System.Drawing.Point(6, 35);
+            this.labelMyAddress.Name = "labelMyAddress";
+            this.labelMyAddress.Size = new System.Drawing.Size(64, 13);
+            this.labelMyAddress.TabIndex = 1;
+            this.labelMyAddress.Text = "My address:";
             // 
             // tabPageOptions
             // 
@@ -146,6 +154,18 @@
             this.tabPageOptions.Text = "Options";
             this.tabPageOptions.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(26, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(246, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Click on Go to change FlatOut 2 Graphics settings.";
+            // 
             // tabPageSinglePlayer
             // 
             this.tabPageSinglePlayer.Controls.Add(this.label2);
@@ -156,6 +176,15 @@
             this.tabPageSinglePlayer.TabIndex = 3;
             this.tabPageSinglePlayer.Text = "Single Player";
             this.tabPageSinglePlayer.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(85, 35);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(128, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Click on Go to play alone.";
             // 
             // pictureBoxFlatOutLogo
             // 
@@ -170,35 +199,6 @@
             this.pictureBoxFlatOutLogo.TabIndex = 3;
             this.pictureBoxFlatOutLogo.TabStop = false;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(49, 34);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(241, 21);
-            this.comboBox1.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(246, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Click on Go to change FlatOut 2 Graphics settings.";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(85, 34);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(128, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Click on Go to play alone.";
-            // 
             // FormMain
             // 
             this.AcceptButton = this.buttonRun;
@@ -206,7 +206,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.buttonExit;
-            this.ClientSize = new System.Drawing.Size(328, 326);
+            this.ClientSize = new System.Drawing.Size(328, 325);
             this.Controls.Add(this.pictureBoxFlatOutLogo);
             this.Controls.Add(this.mainTabControl);
             this.Controls.Add(this.buttonRun);
@@ -241,9 +241,9 @@
         private System.Windows.Forms.TabControl mainTabControl;
         private System.Windows.Forms.TabPage tabClient;
         private System.Windows.Forms.TabPage tabServer;
-        private System.Windows.Forms.TextBox textBoxClient_ServerIP;
+        private System.Windows.Forms.TextBox textBoxClient_HostAddress;
         private System.Windows.Forms.Label labelServerIP;
-        private System.Windows.Forms.Label labelMyIP;
+        private System.Windows.Forms.Label labelMyAddress;
         private System.Windows.Forms.TabPage tabPageOptions;
         private System.Windows.Forms.TabPage tabPageSinglePlayer;
         private System.Windows.Forms.PictureBox pictureBoxFlatOutLogo;
